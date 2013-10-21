@@ -1,0 +1,12 @@
+exportPattern(
+		'BiSEp',
+		'BISEP',
+		'BEEM',
+		'BIGEE',
+		'BEEP',
+		'FURE'
+		)
+import('mclust')
+import('GOSemSim')
+import('GO.db')
+import('org.Hs.eg.db')
