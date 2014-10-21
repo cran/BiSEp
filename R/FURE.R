@@ -25,14 +25,14 @@ else if(inputType == "BEEM")
 }
 
 # Do GO term functional redundancy mapping
-tab1 <- merge(toTable(org.Hs.egSYMBOL2EG), toTable(org.Hs.egGO))
+tab1 <- merge(toTable(org.Hs.eg.db::org.Hs.egSYMBOL2EG), toTable(org.Hs.eg.db::org.Hs.egGO))
 w1 <- which(data[,1] %in% tab1[,2])
 x8 <- data[w1,]
 w2 <- which(x8[,2] %in% tab1[,2])
 x9 <- x8[w2,]
 unG4 <- unique(c(x9[,1], x9[,2]))
-tab1 <- merge(toTable(org.Hs.egSYMBOL2EG[unG4]), toTable(org.Hs.egGO))
-tab2 <- select(GO.db, tab1$go_id, "TERM", "GOID")
+tab1 <- merge(toTable(org.Hs.eg.db::org.Hs.egSYMBOL2EG[unG4]), toTable(org.Hs.eg.db::org.Hs.egGO))
+tab2 <- select(GO.db::GO.db, tab1$go_id, "TERM", "GOID")
 tab3 <- cbind(tab1, tab2)
 tab4 <- unique(tab1[,1:2])
 redundantIDs <- character(0)

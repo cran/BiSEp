@@ -9,5 +9,4 @@ exportPattern(
 		)
 import('mclust')
 import('GOSemSim')
-import('GO.db')
-import('org.Hs.eg.db')
+importFrom('AnnotationDbi', 'toTable', 'select')
