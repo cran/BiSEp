@@ -1,5 +1,5 @@
-\name{BEEM_EXPRS}
-\alias{BEEM_EXPRS}
+\name{INPUT_data}
+\alias{INPUT_data}
 \docType{data}
 \title{
 A Log2 Gene Expression matrix
@@ -7,8 +7,8 @@ A Log2 Gene Expression matrix
 \description{
 A Log2 Gene Expression matrix where rownames are genes and colnames are samples
 }
-\usage{data(BEEM_EXPRS)}
+\usage{data(INPUT_data)}
 \format{
-5,000 observations across 200 variables. All data is log2 transformed RSEM values. 
+13 observations across 442 variables. 
 }
 \keyword{datasets}

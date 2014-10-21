@@ -1,5 +1,5 @@
-\name{BEEM_MUT}
-\alias{BEEM_MUT}
+\name{MUT_data}
+\alias{MUT_data}
 \docType{data}
 \title{
 A matrix containing discreet mutation calls
@@ -7,8 +7,8 @@ A matrix containing discreet mutation calls
 \description{
 A matrix containing discreet mutation calls of either 'WT' or 'MUT' where rownames are genes and column names are samples
 }
-\usage{data(BEEM_MUT)}
+\usage{data(MUT_data)}
 \format{
-5000 observations across 229 variables. 
+4 observations across 442 variables. 
 }
 \keyword{datasets}

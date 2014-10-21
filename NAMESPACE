@@ -3,8 +3,9 @@ exportPattern(
 		'BISEP',
 		'BEEM',
 		'BIGEE',
-		'BEEP',
-		'FURE'
+		'FURE',
+		'expressionPlot',
+		'waterfallPlot'
 		)
 import('mclust')
 import('GOSemSim')

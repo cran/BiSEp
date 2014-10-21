@@ -7,18 +7,18 @@ Part of the Synthetic Lethality detection in Genomics toolkit.  Detects bimodali
 }
 \usage{
 BIGEE(
-	data = data, 
-	confC = confC
+	bisepData=data, 
+	sampleType=c("cell_line", "cell_line_low", "patient", "patient_low")
 	)
 }
 \arguments{
-  \item{data}{This should be a log2 gene expression matrix with genes as rownames and samples as column names.  Suitable for gene expression data from any platform - NGS datasets should be RPKM or RSEM values.
+  \item{bisepData}{This should be the output from the BISEP function.
 }
-  \item{confC}{The confidence with which you would like to call bimodality in the gene expression dataset.  Either 'high' 'med' or 'low' can be input.
+  \item{sampleType}{The type of sample being analysed.  Select 'cell_line' or 'patient' for datasets with greater than ~200 samples.  For datasets with less than ~200 samples, use 'cell_line_low' or 'patient_low'.
 }
 }
 \details{
-The lower confidence calls will dramatically affect the number of gene pairs that the tool produces and increase the false positive rate.  The tool will take approximately 10 minutes to run a 5,000 row and 200 column input matrix using a 'medium,' confidence interval.
+Lower sample numbers have more stringent bimodality hurdles to clear in order to keep the false positive rate lower.  The tool returns a percentage complete text window so the user can observe the status of the job. 
 }
 \value{
 A matrix containing three columns. Columns 1 and 2 are the gene symbols that make up the candidate synthetic lethal gene pairs.  Column 3 is the score calculated the tool to rank the statistical significance of the gene pairs.
@@ -29,10 +29,6 @@ Mark Wappett
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\examples{
-data(BIGEE_example_input)
-outBIGEE <- BIGEE(data=BIGEE_example_input, confC='high')
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ SyntheticLethal }

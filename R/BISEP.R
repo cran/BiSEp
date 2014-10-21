@@ -5,37 +5,11 @@
 # Date of V3.0: May - June 2013	
 # Author: M Wappett
 # Decription: Input a matrix of continuous data with genes as rows and samples as columns.  Algorithm may take some considerable time to run (1 hour for 20,500 genes across 800 samples)
-BISEP <- function(data=data, confC=confC)
+BISEP <- function(data=data)
 {
-# Define confidence criteria
-for(i in 1:1)
-{
-if(confC == "high")
-{
-	pI <- 0.5
-	dTA <- 3.5
-	bI <- 1
-	numALL <- 10
-}
-else if(confC == "med")
-{
-	pI <- 0.5
-	dTA <- 2.5
-	bI <- 0.9
-	numALL <- 5
-}
-else if(confC == "low")
-{
-	pI <- 0.55
-	dTA <- 2
-	bI <- 0.6
-	numALL <- 1.5
-}
-}
-print(pI)
-print(dTA)
-print(bI)
-print(numALL)
+# Deal with missing data
+if(missing(data)) stop("Need to input expression data matrix")
+
 # Deal with any negative values (< 1 min)
 data2 <- apply(data, 1, function(x) { 
 			w1 <-  which(x[1:dim(data)[2]] < 0)
@@ -76,9 +50,8 @@ bimodalIndex <- function(dataset, verbose = TRUE)
     bim <- as.data.frame(bim)
     bim
 }
+print("Calculating bimodal index.....")
 biIndex <- bimodalIndex(data2)
-subBiIndex <- subset(biIndex, biIndex[,6] > bI & biIndex[,5] < pI & biIndex[,4] > dTA)
-subBiIndex2 <- subBiIndex[order(-subBiIndex[,6]),]
 
 # Set up bimodality in gene expression (BIG) function and run
 indexing<-function(x.sort,test.bnd,alpha)
@@ -196,10 +169,11 @@ return(X);
 }
 
 # Run the big method (will take ~2 mins per 1,000 samples)
+print("Calculating BISEP values.....")
 big.model<-BIG(list(X=data2))
 bmT <- as.data.frame(cbind(big.model[[2]], big.model[[3]]), stringsAsFactors=FALSE)
 rownames(bmT) <- rownames(data2)
-outList <- list(BISEP=bmT, BI=biIndex)
+outList <- list(BISEP=bmT, BI=biIndex, DATA=data2)
 return(outList)
 }
 

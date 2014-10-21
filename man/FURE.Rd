@@ -5,13 +5,13 @@
 \description{Utilises gene ontology information from the GO database bioconductor package.  Assesses gene pairs output from the SLinG and BEEM tools for gene ontology functional redundancy.  Performs semantic similarity scoring utilising the GOSemSim bioconductor package}
 \usage{
 FURE(
-	x7 = data, 
-	inputType = inputType)
+	data=data, 
+	inputType=inputType)
 }
 \arguments{
-  \item{x7}{This should be the output matrix (or similar) from the SLinG and BEEM tools.  Columns 1 and 2 should be gene symbols.
+  \item{data}{This should be the output matrix (or similar) from the SLinG and BEEM tools.  Columns 1 and 2 should be gene symbols.
 }
-  \item{inputType}{Either 'S' for SLING or 'B' for BEEM based on origin of the input matrix.}
+  \item{inputType}{Either 'BIGEE' or 'BEEM' based on origin of the input matrix.}
 }
 
 \value{
@@ -21,10 +21,6 @@ A list of matrices containing gene pairs with associated synthetic lethal statis
 }
 \author{
 Mark Wappett
-}
-\examples{
-data(FURE_example_input)
-outputFURE <- FURE(x7=FURE_example_input, inputType='S')
 }
 
 \keyword{ GeneOntology }

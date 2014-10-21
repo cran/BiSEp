@@ -6,26 +6,28 @@
 # Decription: Input a matrix of continuous data with genes as rows and samples as columns.  Algorithm may take some considerable time to run (~ 10 hours for 80,000 gene pairs as results)
 
 # Read command line arguments
-FURE <- function(x7=data, inputType=inputType)
+FURE <- function(data=data, inputType=inputType)
 {
+
+# Define confidence criteria
+if(missing(data)) stop("Need to input expression data matrix")
+if(missing(inputType)) stop("Need to specify sample type")
+
 # Is the input matrix from the SlinG or BEEM algorithms?
 colNum <- 0
-for(i in 1:1)
+if(inputType == "BIGEE")
 {
-	if(inputType == "S")
-	{
-		colNum <- 4
-	}
-	else if(inputType == "B")
-	{
-		colNum <- 11
-	}
+	colNum <- 4
+}
+else if(inputType == "BEEM")
+{
+	colNum <- 11
 }
 
 # Do GO term functional redundancy mapping
 tab1 <- merge(toTable(org.Hs.egSYMBOL2EG), toTable(org.Hs.egGO))
-w1 <- which(x7[,1] %in% tab1[,2])
-x8 <- x7[w1,]
+w1 <- which(data[,1] %in% tab1[,2])
+x8 <- data[w1,]
 w2 <- which(x8[,2] %in% tab1[,2])
 x9 <- x8[w2,]
 unG4 <- unique(c(x9[,1], x9[,2]))
