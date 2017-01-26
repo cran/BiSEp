@@ -8,7 +8,6 @@
 # Read command line arguments
 FURE <- function(data=data, inputType=inputType)
 {
-
 # Define confidence criteria
 if(missing(data)) stop("Need to input expression data matrix")
 if(missing(inputType)) stop("Need to specify sample type")
@@ -60,9 +59,13 @@ x9$redundant_terms <- redundantTerms
 
 unG5 <- as.list(tab4[,1])
 # Perform semantic similarity mapping from gene Ontologies (this may take some considerable time - up to 8 hours; suggest running overnight)
-v1 <- mgeneSim(unG5, ont="MF", organism="human")
-v2 <- mgeneSim(unG5, ont="BP", organism="human")
-v3 <- mgeneSim(unG5, ont="CC", organism="human")
+hsGOmf <- godata('org.Hs.eg.db', ont="MF")
+hsGObp <- godata('org.Hs.eg.db', ont="BP")
+hsGOcc <- godata('org.Hs.eg.db', ont="CC")
+
+v1 <- mgeneSim(genes=unG5, semData=hsGOmf, measure="Wang",verbose=FALSE)
+v2 <- mgeneSim(genes=unG5, semData=hsGObp, measure="Wang",verbose=FALSE)
+v3 <- mgeneSim(genes=unG5, semData=hsGOcc, measure="Wang",verbose=FALSE)
 
 mfScore <- character(0)
 for(i in 1:dim(x9)[1])
