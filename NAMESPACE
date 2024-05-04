@@ -7,8 +7,10 @@ exportPattern(
 		'expressionPlot',
 		'waterfallPlot'
 		)
-import('mclust')
-import('GOSemSim')
+importFrom('mclust', 'Mclust', 'mclustBIC')
+importFrom('GOSemSim', 'godata', 'mgeneSim')
+importFrom('org.Hs.eg.db', 'org.Hs.egSYMBOL2EG', 'org.Hs.egGO')
+importFrom('GO.db', 'GO.db')
 importFrom('AnnotationDbi', 'toTable', 'select')
 importFrom('graphics', 'abline', 'barplot', 'layout', 'legend', 'plot')
 importFrom('stats', 'density', 'fisher.test', 'quantile', 'rnorm',
